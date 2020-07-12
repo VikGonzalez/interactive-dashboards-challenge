@@ -1,8 +1,4 @@
-
-// IMPORTAR JSON
-d3.json("./data/samples.json").then(f=> 
-    console.log(f.samples)
-    );
+d3.json("./data/samples.json").then(f=> console.log(f.samples));
 
 //  CREAR LISTA
 let options = d3.json("./data/samples.json").then((d=>{
@@ -15,7 +11,7 @@ let options = d3.json("./data/samples.json").then((d=>{
 
     console.log(options)
 
-    for (let i = 0; i < options.lenght; i++) {
+    for (var i = 0; i < options.lenght; i++) {
         let opt = options[i];
         let el = document.createElement("option")
 
@@ -31,12 +27,11 @@ function buildPlot() {
         let samples = d.samples;
         let filteredResult = samples.filter(sampleObject => sampleObject.id == preset);
         let result = filteredResult[0];
-        // RANKEAR TOP TEN
+
         let sampleValues = result.sample_values.slice(0,10);
         let otuIds = result.otu_ids.slice(0,10);
         let otuLabels = result.otu_labels.slice(0,10);
 
-        // TRACE FOR OTUS DATA
         let trace = {
             x:otuIds,
             y:sampleValues,
@@ -44,19 +39,14 @@ function buildPlot() {
             type: "bar",
             orientation: "h"
         };
-        // ASIGNAR DATA
+
         let plotData = [trace];
-        // APLICAR EL GROUP BAR AL LAYOUT
+
         let layOut = {
             title: "Top 10 OTUS",
-            l: 100,
-            r: 100,
-            t: 100,
-            b: 100,
-
             yAxis: {title: "OTU ID"}
         };
-        // DEFINIR EL PLOT A UTILIZAR CON EL DIV TAG ID "BAR"
+        // DEFINIR EL PLOT A UTILIZAR
         Plotly.newPlot("bar", plotData, layOut);
         console.log(result);
         console.log(sampleValues);
@@ -66,15 +56,15 @@ function buildPlot() {
 };
 
 buildPlot();
-
+// CREAR ESCUCHADOR Y ALMACENARLA !!!!!REVISAR EL ID
+let choice = d3.selectAll("#selDataset").on("change", getData);
 
 // CREAR FUNCION PARA TRAER DATA
 function getData() {
-    let selectedOption = d3.select("#selDataset").node().value;
-    // CREAR ESCUCHADOR Y ALMACENARLA !!!!!REVISAR EL ID
-    let choice = d3.selectAll("#selDataset").on("change", getData);
-    // ASIGNAR A UNA VARIABLE LA INFORMACIÓN QUE INGRESO EL USUARIO
-    let subjectIds = selectedOption.property("value");
+
+    let dropdownMenu = d3.select("#selDataset");
+    // EXTRAE LA INFORMACIÓN QUE INGRESO EL USUARIO
+    let subjectIds = dropdownMenu.property("value");
 
 
     let options = d3.json("./data/samples.json").then((d)=>{
@@ -87,7 +77,7 @@ function getData() {
 
         console.log(options)
 
-        for( i = 0; i < options.lenght; i++) {
+        for(var i = 0; i < options.lenght; i++) {
             let opt = options[i];
             let el = document.createElement("option");
 
