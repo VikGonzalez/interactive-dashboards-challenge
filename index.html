@@ -26,10 +26,12 @@
       <div class="col-md-2">
         <div class="well">
           <h5>Test Subject ID No.:</h5>
-          <select name="selDataset" id="selDataset">
-
-          </select>
+          <select name="selDropdown" id="selDropdown"></select>
+          <option value="AB">940</option>
         </div>
+
+
+
         <!-- ETIQUETA RESUMEN -->
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -48,6 +50,7 @@
       <!-- INSERTAR PLOT DE CALIBRE -->
       <div class="col-md-5">
         <div id="gauge"></div>
+        <div id="canvas"></div>
       </div>
     </div>
           <!-- INSERTAR PLOT DE BURBUJAS -->
@@ -56,6 +59,12 @@
         <div id="bubble"></div>
       </div>
     </div>
+              <!-- INSERTAR PLOT DE PAY -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="pie"></div>
+                </div>
+              </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
@@ -66,3 +75,4 @@
 </body>
 
 </html>
+ 
